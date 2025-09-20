@@ -1,28 +1,28 @@
-import React from "react";
-import { Link } from "react-router-dom";
 import { useRecipeStore } from "./recipeStore";
-import SearchBar from "./SearchBar";
+import { useParams } from "react-router-dom";
 
-const RecipeList = () => {
-  const recipes = useRecipeStore((state) => state.filteredRecipes);
+const RecipeDetails = () => {
+  const { id } = useParams();
+  const recipe = useRecipeStore((state) =>
+    state.recipes.find((r) => r.id === Number(id))
+  );
+  const favorites = useRecipeStore((state) => state.favorites);
+  const addFavorite = useRecipeStore((state) => state.addFavorite);
+  const removeFavorite = useRecipeStore((state) => state.removeFavorite);
+
+  const isFavorite = favorites.includes(recipe.id);
 
   return (
     <div>
-      <h2>Recipe List</h2>
-      <SearchBar />
-      <ul>
-        {recipes.length > 0 ? (
-          recipes.map((recipe) => (
-            <li key={recipe.id}>
-              <Link to={`/recipe/${recipe.id}`}>{recipe.title}</Link>
-            </li>
-          ))
-        ) : (
-          <p>No recipes found</p>
-        )}
-      </ul>
+      <h1>{recipe.title}</h1>
+      <p>{recipe.description}</p>
+      {isFavorite ? (
+        <button onClick={() => removeFavorite(recipe.id)}>Remove Favorite</button>
+      ) : (
+        <button onClick={() => addFavorite(recipe.id)}>Add to Favorites</button>
+      )}
     </div>
   );
 };
 
-export default RecipeList;
+export default RecipeDetails;
