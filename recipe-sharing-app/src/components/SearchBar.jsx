@@ -1,15 +1,25 @@
-import React from "react";
-import { useRecipeStore } from "./recipeStore";
+import { useState } from "react";
 
-const SearchBar = () => {
-  const setSearchTerm = useRecipeStore((state) => state.setSearchTerm);
+const SearchBar = ({ onSearch }) => {
+  const [query, setQuery] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (query.trim()) {
+      onSearch(query);
+    }
+  };
 
   return (
-    <input
-      type="text"
-      placeholder="Search recipes..."
-      onChange={(e) => setSearchTerm(e.target.value)}
-    />
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        placeholder="Enter GitHub username..."
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+      />
+      <button type="submit">Search</button>
+    </form>
   );
 };
 

@@ -1,35 +1,31 @@
-import { Routes, Route, Link } from "react-router-dom";
-import RecipeList from "./components/RecipeList";
-import AddRecipeForm from "./components/AddRecipeForm";
-import RecipeDetails from "./components/RecipeDetails";
+import { useState } from "react";
 import SearchBar from "./components/SearchBar";
-import FavoritesList from "./components/FavoritesList";
-import RecommendationsList from "./components/RecommendationsList";
+import UserCard from "./components/UserCard";
+import { fetchGitHubUser } from "./services/githubService";
 
 function App() {
+  const [user, setUser] = useState(null);
+  const [error, setError] = useState("");
+
+  const handleSearch = async (username) => {
+    try {
+      setError("");
+      const data = await fetchGitHubUser(username);
+      setUser(data);
+    } catch (err) {
+      setError("User not found");
+      setUser(null);
+    }
+  };
+
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>Recipe Sharing App</h1>
-
-      <nav style={{ marginBottom: "20px" }}>
-        <Link to="/">Home</Link> |{" "}
-        <Link to="/add">Add Recipe</Link> |{" "}
-        <Link to="/favorites">Favorites</Link> |{" "}
-        <Link to="/recommendations">Recommendations</Link>
-      </nav>
-
-      <SearchBar />
-
-      <Routes>
-        <Route path="/" element={<RecipeList />} />
-        <Route path="/add" element={<AddRecipeForm />} />
-        <Route path="/recipe/:id" element={<RecipeDetails />} />
-        <Route path="/favorites" element={<FavoritesList />} />
-        <Route path="/recommendations" element={<RecommendationsList />} />
-      </Routes>
+    <div>
+      <h1>GitHub User Search</h1>
+      <SearchBar onSearch={handleSearch} />
+      {error && <p style={{ color: "red" }}>{error}</p>}
+      <UserCard user={user} />
     </div>
   );
 }
 
 export default App;
-
