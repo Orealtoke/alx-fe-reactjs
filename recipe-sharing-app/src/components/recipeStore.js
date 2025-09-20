@@ -1,20 +1,17 @@
 import { create } from "zustand";
 
 export const useRecipeStore = create((set) => ({
-  recipes: [
-    // optional starter data
-    { id: 1, title: "Spaghetti Carbonara", description: "Classic creamy carbonara." },
-    { id: 2, title: "Avocado Toast", description: "Simple breakfast favorite." }
-  ],
+  recipes: [],
   addRecipe: (newRecipe) =>
     set((state) => ({ recipes: [...state.recipes, newRecipe] })),
-  updateRecipe: (id, updatedFields) =>
+  updateRecipe: (id, updatedData) =>
     set((state) => ({
-      recipes: state.recipes.map((r) => (r.id === id ? { ...r, ...updatedFields } : r)),
+      recipes: state.recipes.map((recipe) =>
+        recipe.id === id ? { ...recipe, ...updatedData } : recipe
+      ),
     })),
   deleteRecipe: (id) =>
-    set((state) => ({ recipes: state.recipes.filter((r) => r.id !== id) })),
-  setRecipes: (recipes) => set({ recipes }),
+    set((state) => ({
+      recipes: state.recipes.filter((recipe) => recipe.id !== id),
+    })),
 }));
-
-export default useRecipeStore;
