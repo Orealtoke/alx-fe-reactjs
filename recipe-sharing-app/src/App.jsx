@@ -1,5 +1,5 @@
-import RecipeList from "./components/RecipeList";
-import AddRecipeForm from "./components/AddRecipeForm";
+import RecipeList from "./src/components/RecipeList";
+import AddRecipeForm from "./src/components/AddRecipeForm";
 
 function App() {
   return (
