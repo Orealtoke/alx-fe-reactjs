@@ -12,10 +12,11 @@ function App() {
       <Routes>
         <Route path="/" element={<RecipeList />} />
         <Route path="/add" element={<AddRecipeForm />} />
-        <Route path="/recipe/:id" element={<RecipeDetails />} /> {/* ✅ recipe.id check */}
+        <Route path="/recipe/:id" element={<RecipeDetails />} />
       </Routes>
     </Router>
   );
 }
 
 export default App;
+
