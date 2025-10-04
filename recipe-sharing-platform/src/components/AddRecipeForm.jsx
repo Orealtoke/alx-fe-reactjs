@@ -21,7 +21,7 @@ function AddRecipeForm() {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Handle input changes
+  // Handle input changes with target.value
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -30,6 +30,22 @@ function AddRecipeForm() {
     }));
     
     // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: ""
+      }));
+    }
+  };
+
+  // Handle textarea changes specifically
+  const handleTextareaChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+    
     if (errors[name]) {
       setErrors(prev => ({
         ...prev,
@@ -115,8 +131,7 @@ function AddRecipeForm() {
     setIsSubmitting(true);
 
     try {
-      // In a real application, you would send this data to your backend API
-      // For now, we'll simulate an API call and store in localStorage
+      // Create new recipe object
       const newRecipe = {
         id: Date.now(), // Generate a unique ID
         title: formData.title.trim(),
@@ -212,7 +227,7 @@ function AddRecipeForm() {
                 id="summary"
                 name="summary"
                 value={formData.summary}
-                onChange={handleChange}
+                onChange={handleTextareaChange}
                 rows="2"
                 className={`w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent ${
                   errors.summary ? 'border-red-500' : 'border-gray-300'
@@ -343,15 +358,15 @@ function AddRecipeForm() {
                 id="ingredients"
                 name="ingredients"
                 value={formData.ingredients}
-                onChange={handleChange}
+                onChange={handleTextareaChange}
                 rows="4"
                 className={`w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent ${
                   errors.ingredients ? 'border-red-500' : 'border-gray-300'
                 }`}
                 placeholder="Enter each ingredient on a new line:
-- 2 cups flour
-- 1 cup sugar
-- 3 eggs..."
+2 cups flour
+1 cup sugar
+3 eggs..."
               />
               {errors.ingredients && (
                 <p className="mt-1 text-sm text-red-600">{errors.ingredients}</p>
@@ -370,7 +385,7 @@ function AddRecipeForm() {
                 id="instructions"
                 name="instructions"
                 value={formData.instructions}
-                onChange={handleChange}
+                onChange={handleTextareaChange}
                 rows="6"
                 className={`w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent ${
                   errors.instructions ? 'border-red-500' : 'border-gray-300'
