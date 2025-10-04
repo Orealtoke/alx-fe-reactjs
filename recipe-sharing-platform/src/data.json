@@ -3,31 +3,30 @@
     "id": 1,
     "title": "Spaghetti Carbonara",
     "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
-    "image": "https://share.google/xPDzTKc2VPJiGrgFW"
+    "image": "https://images.unsplash.com/photo-1603133872878-684f208fb85e"
   },
   {
     "id": 2,
     "title": "Chicken Tikka Masala",
     "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato based gravy.",
-    "image": "https://share.google/images/ymO5tGEWnXAQZT9LZ"
+    "image": "https://images.unsplash.com/photo-1625944230943-2a3e3ffcb8f0"
   },
-    {
-        "id": 3,
-        "title": "Beef Stroganoff",
-        "summary": "Sautéed pieces of beef served in a sauce with smetana (sour cream).",
-        "image": "https://share.google/images/42cAyhBnBEtddQjxy"
-    },
-    {
-        "id": 4,
-        "title": "Vegetable Stir Fry",
-        "summary": "A quick and healthy dish with mixed vegetables sautéed in a savory sauce.",
-        "image": "https://share.google/images/8PCAPI5afukhAFLpA"
-    },
-    {
-        "id": 5,
-        "title": "Fish Tacos",
-        "summary": "Grilled or fried fish served in a corn or flour tortilla with various toppings.",
-        "image": "https://share.google/images/gp7TIgOwOj6AKhZRm"
-    }
-
+  {
+    "id": 3,
+    "title": "Beef Stroganoff",
+    "summary": "Sautéed pieces of beef served in a sauce with smetana (sour cream).",
+    "image": "https://images.unsplash.com/photo-1601315489411-8e4f5a3b4d5b"
+  },
+  {
+    "id": 4,
+    "title": "Vegetable Stir Fry",
+    "summary": "A quick and healthy dish with mixed vegetables sautéed in a savory sauce.",
+    "image": "https://images.unsplash.com/photo-1617196033097-5a9c02c73d2f"
+  },
+  {
+    "id": 5,
+    "title": "Fish Tacos",
+    "summary": "Grilled or fried fish served in a corn or flour tortilla with various toppings.",
+    "image": "https://images.unsplash.com/photo-1617196033085-7c74b8b1d7d7"
+  }
 ]
